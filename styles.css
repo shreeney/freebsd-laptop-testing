@@ -64,6 +64,10 @@ table {
     border-collapse: collapse;
     font-family: sans-serif;
 }
+
+.laptop-ranking {
+    width: 50vw;
+}
 .laptop-ranking tbody tr:nth-child(1) td {
     color: #ffd700;
 }
