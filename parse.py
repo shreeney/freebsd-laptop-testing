@@ -63,7 +63,7 @@ def emit_html(model, ranking, data, path):
     repo = os.getenv('REPO_CONTEXT', 'unknown/repo')
     branch = os.getenv('BRANCH_NAME', 'main')
     clean_path = path.lstrip("./")
-    github_link = f"https://github.com{repo}/blob/{branch}/{clean_path}"
+    github_link = f"https://github.com/{repo}/blob/{branch}/{clean_path}"
     print(f"<tr>", end="")
 
     #Model cell with link
