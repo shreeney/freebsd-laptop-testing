@@ -101,7 +101,7 @@ Hardware: Laptop 13 (AMD Ryzen 7040Series)
         class      = serial bus
         subclass   = USB
 
-  Category Total Score: 12/12
+  Category Total Score: 2/2
 
 --------------------
 
