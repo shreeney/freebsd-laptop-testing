@@ -2,7 +2,6 @@
 
 Running: FreeBSD 16.0-CURRENT main-n283261-6f15ba8004c3 GENERIC
 Hardware: LenovoYoga11E 
-Score: 25/30
 ------------------------------------
 
 - Graphics
@@ -12,6 +11,8 @@ Score: 25/30
         device     = 'HD Graphics 620'
         class      = display
         subclass   = VGA
+
+  Category Total Score: 2/2
 
 --------------------
 
@@ -27,6 +28,8 @@ Score: 25/30
         device     = 'RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller'
         class      = network
 
+  Category Total Score: 4/4
+
 --------------------
 
 - Audio
@@ -37,6 +40,8 @@ Score: 25/30
         class      = multimedia
         subclass   = HDA
 
+  Category Total Score: 2/2
+
 --------------------
 
 - Storage
@@ -45,6 +50,8 @@ Score: 25/30
         vendor     = 'Intel Corporation'
         device     = 'Sunrise Point-LP SATA Controller [AHCI mode]'
         class      = mass storage
+
+  Category Total Score: 2/2
 
 --------------------
 
@@ -56,10 +63,13 @@ Score: 25/30
         class      = serial bus
         subclass   = USB
 
+  Category Total Score: 2/2
+
 --------------------
 
 - Bluetooth
   Status: NOT DETECTED
+  Category Total Score: 0/0
 
 --------------------
 
