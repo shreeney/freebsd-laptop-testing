@@ -32,7 +32,7 @@ def parse_file(path):
     with open(path) as f:
         lines = f.readlines()
 
-    model = None
+    model = "Unknown Hardware"
     data = {c: [] for c in COLUMNS}
     scores = {c: None for c in COLUMNS}
 
@@ -43,18 +43,17 @@ def parse_file(path):
     for line in lines:
         line = line.rstrip()
         if line.startswith("Hardware:"):
-            model = line.split("Hardware:", 1)[1].strip()
+            parts = line.split("Hardware:", 1)
+            if len(parts) > 1:
+                model = parts[1].strip()
         m_sec = re.match(r"-\s+(.+)", line)
         if m_sec:
             section = m_sec.group(1)
             current_section = section if section in data else None
             continue
         if current_section:
-            m_status = re.match(r"\s*Device \d+ Status:\s+(.+)", line)
             m_dev = re.match(r"\s*device\s+=\s+'(.+)'", line)
-            if m_status:
-                data[current_section].append(m_status.group(1))
-            elif m_dev:
+            if m_dev:
                 data[current_section].append(m_dev.group(1))
             m_score = re.search(r"Category Total Score:\s*(\d+)/(\d+)", line)
             if m_score:
@@ -63,8 +62,8 @@ def parse_file(path):
                 scores[current_section] = f"{earned}/{possible}"
                 total_earned += earned
                 total_possible += possible
-    ranking = f"{total_earned}/{total_possible}" if total_possible > 0 else "0/0"
 
+    ranking = f"{total_earned}/{total_possible}"
     return model, ranking, data, scores
 
 
