@@ -28,7 +28,7 @@ Hardware: 20HSS0HR00
         device     = 'RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller'
         class      = network
 
-  Category Total Score: 4/4
+  Category Total Score: 1/2 
 
 --------------------
 
