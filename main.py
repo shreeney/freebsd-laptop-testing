@@ -94,37 +94,37 @@ def generate_hardware_summary(pciconf, hw_probe, output):
         for label, (pci_blocks, probe_devices) in category_results.items():
             out.write(f"- {label}\n")
 
-            category_earned = 0
-
             if label == "USB Ports":
-                any_detected = False
+                any_working = any(d["status"].lower() in ["works", "detected"] for d in probe_devices)
+                score = 2 if any_working else 0
+
                 if pci_blocks:
-                    for i in range(len(pci_blocks)):
-                        status = probe_devices[i]["status"] if i < len(probe_devices) else "unknown"
-                        if status.lower() in ["works", "detected"]:
-                            any_detected = True
-                            break
-                category_earned = 2 if any_detected else 0
-                category_possible = 2
+                    for i, block in enumerate(pci_blocks, 1):
+                        indented = "    " + block.replace("\n", "\n    ").strip()
+                        out.write(f"{indented}\n")
+                    out.write(f"\n  Category Total Score: {score}/2\n")
+                else:
+                    out.write("  Status: NOT DETECTED\n")
+                    out.write(f"  Category Total Score: 0/2\n")
+
             else:
+                category_earned = 0
                 category_possible = len(pci_blocks) * 2
+
                 if pci_blocks:
                     for i, block in enumerate(pci_blocks):
                         status = probe_devices[i]["status"] if i < len(probe_devices) else "unknown"
                         if status.lower() in ["works", "detected"]:
                             category_earned += 2
 
-            if pci_blocks:
-                for i, block in enumerate(pci_blocks, 1):
-                    hw_status = probe_devices[i - 1]["status"] if i - 1 < len(probe_devices) else "unknown"
-                    out.write(f"  Device {i} Status: {hw_status.upper()}\n")
-                    indented = "    " + block.replace("\n", "\n    ").strip()
-                    out.write(f"{indented}\n")
+                        out.write(f"  Device {i + 1} Status: {status.upper()}\n")
+                        indented = "    " + block.replace("\n", "\n    ").strip()
+                        out.write(f"{indented}\n")
 
-                out.write(f"\n  Category Total Score: {category_earned}/{category_possible}\n")
-            else:
-                out.write("  Status: NOT DETECTED\n")
-                out.write(f"  Category Total Score: 0/{category_possible}\n")
+                    out.write(f"\n  Category Total Score: {category_earned}/{category_possible}\n")
+                else:
+                    out.write("  Status: NOT DETECTED\n")
+                    out.write(f"  Category Total Score: 0/{category_possible}\n")
 
             out.write("\n" + "-" * 20 + "\n\n")
 
