@@ -94,20 +94,23 @@ def generate_hardware_summary(pciconf, hw_probe, output):
         for label, (pci_blocks, probe_devices) in category_results.items():
             out.write(f"- {label}\n")
 
-            if label == "USB Ports":
+            # Categories that get a flat 2/2 if ANY device works
+            if label in ["USB Ports", "Audio"]:
                 any_working = any(d["status"].lower() in ["works", "detected"] for d in probe_devices)
                 score = 2 if any_working else 0
+                category_possible = 2
 
                 if pci_blocks:
                     for i, block in enumerate(pci_blocks, 1):
                         indented = "    " + block.replace("\n", "\n    ").strip()
                         out.write(f"{indented}\n")
-                    out.write(f"\n  Category Total Score: {score}/2\n")
+                    out.write(f"\n  Category Total Score: {score}/{category_possible}\n")
                 else:
                     out.write("  Status: NOT DETECTED\n")
-                    out.write(f"  Category Total Score: 0/2\n")
+                    out.write(f"  Category Total Score: 0/{category_possible}\n")
 
             else:
+                # Original logic for Graphics, Networking, Storage, etc.
                 category_earned = 0
                 category_possible = len(pci_blocks) * 2
 
