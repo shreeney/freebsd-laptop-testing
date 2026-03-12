@@ -1,7 +1,7 @@
 === FreeBSD Hardware Status Info ===
 
 Running: FreeBSD 16.0-CURRENT main-n283261-6f15ba8004c3 GENERIC
-Hardware: 20HSS0HR00
+Hardware: Lenovo Yoga 11e
 ------------------------------------
 
 - Graphics
