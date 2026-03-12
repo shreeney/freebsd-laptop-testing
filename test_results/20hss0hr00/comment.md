@@ -1,1 +1,1 @@
-Realtek nic required extra configuration and loading the realtek driver
+Realtek nic required extra configuration and loading the realtek driver with rc.conf
