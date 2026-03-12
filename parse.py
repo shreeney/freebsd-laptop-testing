@@ -70,10 +70,17 @@ def emit_html(model, ranking, data, scores, path):
     branch = os.getenv('BRANCH_NAME', 'main')
     clean_path = path.lstrip("./")
     github_link = f"https://github.com/{repo}/blob/{branch}/{clean_path}"
-
+    file_dir = os.path.dirname(path)
+    comment_file = os.path.join(file_dir, "comment.md")
+    comment_link_html = ""
+    if os.path.exists(comment_file):
+        clean_comment_path = comment_file.lstrip("./")
+        comment_url = f"https://github.com/{repo}/blob/{branch}/{clean_comment_path}"
+        comment_link_html = f"<br><a href='{comment_url}' style='font-size: 0.8em;'>View Comment</a>"
     print(f"<tr>", end="")
     print(f"<td><strong>{escape(model)}</strong><br>", end="")
-    print(f"<a href='{github_link}' style='font-size: 0.8em;'>View Probe</a></td>", end="")
+    print(f"<a href='{github_link}' style='font-size: 0.8em;'>View Probe</a>", end="")
+    print(f"{comment_link_html}</td>", end="")
 
     for c in COLUMNS:
         items = data[c]
