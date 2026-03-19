@@ -71,7 +71,8 @@ def emit_html(model, ranking, data, scores, path):
     clean_path = path.lstrip("./")
     github_link = f"https://github.com/{repo}/blob/{branch}/{clean_path}"
     file_dir = os.path.dirname(path)
-    comment_file = os.path.join(file_dir, "comments.md")
+    comment_file = os.path.join(file_dir, ""
+                                          "")
     comment_link_html = ""
     if os.path.exists(comment_file):
         clean_comment_path = comment_file.lstrip("./")

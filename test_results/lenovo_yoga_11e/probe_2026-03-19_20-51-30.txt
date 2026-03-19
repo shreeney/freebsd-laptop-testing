@@ -1,11 +1,11 @@
 === FreeBSD Hardware Status Info ===
 
-Running: FreeBSD 16.0-CURRENT main-n283261-6f15ba8004c3 GENERIC
-Hardware: Lenovo Yoga 11e
+Running: FreeBSD 15.0-RELEASE-p4 releng/15.0-n281010-8ef0ed690df2 GENERIC
+Hardware: 20HSS0HR00
 ------------------------------------
 
 - Graphics
-  Device 1 Status: WORKS
+  Device 1 Status: DETECTED
     vgapci0@pci0:0:2:0:	class=0x030000 rev=0x02 hdr=0x00 vendor=0x8086 device=0x5916 subvendor=0x17aa subdevice=0x5065
         vendor     = 'Intel Corporation'
         device     = 'HD Graphics 620'
@@ -28,7 +28,7 @@ Hardware: Lenovo Yoga 11e
         device     = 'RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller'
         class      = network
 
-  Category Total Score: 1/2 
+  Category Total Score: 2/2
 
 --------------------
 
@@ -77,7 +77,6 @@ Currently loaded kernel modules:
 acpi_wmi.ko
 dmabuf.ko
 drm.ko
-geom_eli.ko
 hconf.ko
 hidmap.ko
 hms.ko
